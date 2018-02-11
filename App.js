@@ -1,23 +1,34 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/es/integration/react'
+import { createStore, applyMiddleware } from 'redux'
+import ReduxThunk from 'redux-thunk'
 
-export default class App extends React.Component {
+import reducers from './src/reducers'
+
+import { Spinner } from './src/components/common'
+import Main from './src/Main'
+
+class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+    const persistor = persistStore(store)
+    const onBeforeLift = () => {
+    }
+
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <PersistGate
+          loading={<Spinner/>}
+          onBeforeLift={onBeforeLift}
+          persistor={persistor}
+        >
+          <Main/>
+        </PersistGate>
+      </Provider>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
