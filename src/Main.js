@@ -6,9 +6,6 @@ import { Constants } from 'expo'
 import Map from './components/Map'
 
 class Main extends React.Component {
-  componentWillMount() {
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({maps}) => {
+const mapStateToProps = ({map}) => {
   return {
   }
 }
