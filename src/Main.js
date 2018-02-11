@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux'
+import { Constants } from 'expo'
 
 import Map from './components/Map'
 
@@ -21,12 +22,12 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
+    paddingTop: Constants.statusBarHeight,
   },
   header: {
     textAlign: 'center',
     padding: 10,
-    paddingTop: 30,
     backgroundColor: '#fff',
     color: '#999',
     fontSize: 32
