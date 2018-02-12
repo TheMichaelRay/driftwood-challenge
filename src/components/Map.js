@@ -10,38 +10,20 @@ import {
 } from '../actions/map'
 
 class Map extends Component {
-  componentWillMount() {
-    this.props.getCurrentLocation();
-  }
-
   render() {
-    const defaultLocation = {
+    const initialRegion = {
       latitude: 34.0195,
       longitude: -118.4912,
+      latitudeDelta: 0.09,
+      longitudeDelta: 0.09,
     }
-    const {
-      latitude,
-      longitude,
-    } = this.props.currentLocation || defaultLocation
-    console.log(latitude, longitude);
-
     return (
       <MapView
         style={styles.map}
-        initialRegion={{
-          latitude,
-          longitude,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.09,
-        }}
+        showsUserLocation={true}
+        followsUserLocation={true}
+        initialRegion={initialRegion}
       >
-        <MapView.Marker
-          coordinate={{
-            latitude,
-            longitude,
-          }}
-          title="Current Location"
-        />
         {this.props.children}
       </MapView>
     );
