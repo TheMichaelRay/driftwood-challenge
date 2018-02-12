@@ -1,7 +1,21 @@
 import { mapTypes } from './types'
-import { Platform, Alert } from 'react-native'
-import { Location, Permissions } from 'expo'
 
 const {
   SET_ERROR,
+  SAVE_LOCATION,
+  DELETE_LOCATION,
 } = mapTypes
+
+export const saveLocation = payload => {
+  return {
+    type: SAVE_LOCATION,
+    payload,
+  }
+}
+
+export const deleteLocation = payload => {
+  return {
+    type: DELETE_LOCATION,
+    payload,
+  }
+}
