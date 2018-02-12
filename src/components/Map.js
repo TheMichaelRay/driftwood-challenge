@@ -66,7 +66,6 @@ class Map extends Component {
         followsUserLocation={true}
         initialRegion={initialRegion}
         onLongPress={this.onLongPress.bind(this)}
-        radius={10}
       >
         {this.renderMarkers()}
       </ClusterMapView>
